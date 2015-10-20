@@ -40,6 +40,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-browserify');
 
-    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('default', ['build']);
     grunt.registerTask('build', ['clean', 'copy', 'browserify']);
+    grunt.registerTask('watch', ['watch']);
 };
