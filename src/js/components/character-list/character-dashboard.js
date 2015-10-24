@@ -23,12 +23,12 @@ var CharacterDashboard = React.createClass({
         )
     },
     renderCharacterItems_: function() {
-        var imgStyle = { maxWidth:'100%', maxHeight:'100%' };
+        var imgStyle = { width:'100%', height: '360px' };
         var characterItems = this.state.characters.map(function(character) {
             return (
-                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <img src="http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b.jpg" style={imgStyle} />
-                    <div>{character}</div>
+                <div key={character.id} className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <img src={character.imageUri} style={imgStyle} />
+                    <div>{character.name}</div>
                 </div>
             )
         });
