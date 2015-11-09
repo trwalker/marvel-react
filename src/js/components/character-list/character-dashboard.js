@@ -1,28 +1,38 @@
-var React = require('react');
-var CharacterListStore = require('../../stores/character-list-store');
-var CharacterListLoadAction = require('../../actions/character-list-load-action');
+import React from 'react';
 
-var CharacterDashboard = React.createClass({
-    getInitialState: function() {
-        return { characters: CharacterListStore.getCharacters() };
-    },
-    componentWillMount: function () {
-        CharacterListStore.addChangeListener(this._onStateChange);
-    },
-    componentWillUnmount: function () {
-        CharacterListStore.removeChangeListener(this._onStateChange);
-    },
-    componentDidMount: function() {
-        CharacterListLoadAction.loadCharacters();
-    },
-    render: function() {
+class CharacterDashboard extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.characterListStore_ = props.characterListStore ? props.characterListStore : require('../../stores/character-list-store');
+        this.characterListLoadAction_ = props.characterListLoadAction ? props.characterListLoadAction : require('../../actions/character-list-load-action');
+
+        this.state = props.initialState ? props.initialState : { characters: [] };
+    }
+
+    componentWillMount() {
+        this.characterListStore_.addChangeListener(() => {
+            this.onStateChange_(this);
+        });
+
+        this.characterListLoadAction_.loadCharacters();
+    }
+
+    componentWillUnmount() {
+        this.characterListStore_.removeChangeListener(() => {
+            this.onStateChange_(this);
+        });
+    }
+
+    render() {
         return (
             <div className="row">
-                {this.renderCharacterItems_()}
+                { this.renderCharacterItems_() }
             </div>
         )
-    },
-    renderCharacterItems_: function() {
+    }
+
+    renderCharacterItems_() {
         var imgStyle = { width:'100%', height: '360px' };
         var characterItems = this.state.characters.map(function(character) {
             return (
@@ -34,10 +44,12 @@ var CharacterDashboard = React.createClass({
         });
 
         return characterItems;
-    },
-    _onStateChange: function () {
-        this.setState({ characters: CharacterListStore.getCharacters() });
     }
-});
 
-module.exports = CharacterDashboard;
+    onStateChange_(instance) {
+        var characters = instance.characterListStore_.getCharacters();
+        this.setState({ characters: characters });
+    }
+}
+
+export default CharacterDashboard;

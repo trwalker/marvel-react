@@ -1,4 +1,5 @@
-var React = require('react');
+import React from 'react';
+
 var Navigation = require('./header/navigation');
 
 class Template extends React.Component {
@@ -14,4 +15,4 @@ class Template extends React.Component {
     }
 }
 
-module.exports = Template;
+export default Template;

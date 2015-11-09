@@ -1,15 +1,16 @@
-var React = require('react');
+import React from 'react';
+
 var Template = require('./template');
 var CharacterDashboard = require('./character-list/character-dashboard');
 
-var App = React.createClass({
-   render: function() {
-       return (
+class App extends React.Component {
+    render() {
+        return (
             <Template>
                 <CharacterDashboard />
             </Template>
-       );
-   }
-});
+        );
+    }
+}
 
-module.exports = App;
+export default App;
