@@ -1,7 +1,6 @@
 import React from 'react';
-
-var Template = require('./template');
-var CharacterDashboard = require('./character-list/character-dashboard');
+import Template from './template';
+import CharacterDashboard from './character-list/character-dashboard';
 
 class App extends React.Component {
     render() {

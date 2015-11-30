@@ -1,17 +1,20 @@
 
-function CharacterListLoadAction() {
-    this.request = require('superagent');
-    this.dispatcher = require('../dispatcher/app-dispatcher');
-    this.constants = require('../constants/app-constants');
-}
 
-function loadCharacters() {
-    loadCharactersFromApi_(this.request, this.dispatcher, this.constants, function(dispatcher, constants, characters) {
-        dispatcher.handleViewAction({
-            actionType: constants.actions.loadCharacters,
-            characters: characters
+class CharacterListLoadAction {
+    constructor() {
+        this.request_ = require('superagent');
+        this.dispatcher_ = require('../dispatcher/app-dispatcher');
+        this.constants_ = require('../constants/app-constants');
+    }
+
+    loadCharacters() {
+        loadCharactersFromApi_(this.request_, this.dispatcher_, this.constants_, function(dispatcher, constants, characters) {
+            dispatcher.handleViewAction({
+                actionType: constants.actions.loadCharacters,
+                characters: characters
+            });
         });
-    });
+    }
 }
 
 function loadCharactersFromApi_(request, dispatcher, constants, callback) {
@@ -26,10 +29,6 @@ function loadCharactersFromApi_(request, dispatcher, constants, callback) {
             }
         });
 }
-
-CharacterListLoadAction.prototype = {
-    loadCharacters: loadCharacters
-};
 
 var characterListLoadAction = new CharacterListLoadAction();
 

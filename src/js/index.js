@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-var App = require('./components/app');
+import App from './components/app';
 
 ReactDOM.render(<App />, document.getElementById('main'));

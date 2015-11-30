@@ -1,6 +1,5 @@
 import React from 'react';
-
-var Navigation = require('./header/navigation');
+import Navigation from './header/navigation'
 
 class Template extends React.Component {
     render() {
