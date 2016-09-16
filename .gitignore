@@ -30,5 +30,5 @@ node_modules
 # Jet Brains
 .idea
 
-# Dist
-dist
+# webpack build
+build

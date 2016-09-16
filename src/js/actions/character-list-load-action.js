@@ -1,5 +1,4 @@
 
-
 class CharacterListLoadAction {
     constructor() {
         this.request_ = require('superagent');

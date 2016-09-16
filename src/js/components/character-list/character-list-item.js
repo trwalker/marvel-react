@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router'
 
 class CharacterListItem extends React.Component {
     constructor(props) {
@@ -8,12 +9,18 @@ class CharacterListItem extends React.Component {
     }
 
     render() {
-        var imgStyle = { width:'100%', height: '360px' };
+        var imgStyle = { width:'100%', height: '260px' };
 
         return (
             <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <img src={this.character_.imageUri} style={imgStyle} />
-                <div>{this.character_.name}</div>
+                <div className="well">
+                    <h4 className="text-capitalize">{this.character_.name}</h4>
+                    <p>
+                        <Link to={`/characters/${this.character_.id}`}>
+                            <img src={this.character_.image} style={imgStyle} />
+                        </Link>
+                    </p>
+                </div>
             </div>
         );
     }
